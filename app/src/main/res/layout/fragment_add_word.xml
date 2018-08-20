@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".fragments.AddWordFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/medium"
+        android:paddingRight="@dimen/medium"
+        android:paddingTop="@dimen/large">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tlWord"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/panel_height"
+            android:gravity="center_vertical"
+            app:hintTextAppearance="@style/HintText">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edWord"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:background="@drawable/edittext"
+                android:hint="@string/ed_word_hint"
+                android:inputType="text"
+                android:paddingLeft="@dimen/small"
+                android:paddingRight="@dimen/small" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tlTranslate"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/panel_height"
+            android:gravity="center_vertical"
+            app:hintTextAppearance="@style/HintText">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edTranslate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_marginTop="@dimen/medium"
+                android:background="@drawable/edittext"
+                android:inputType="text"
+                android:paddingLeft="@dimen/small"
+                android:paddingRight="@dimen/small" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/bVoice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/large"
+                app:srcCompat="@drawable/ic_voice" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/bAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large"
+                app:srcCompat="@drawable/ic_add_word" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/big"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/cbAutoTranclate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/auto_translate" />
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/cbMulty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/multiple_input" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

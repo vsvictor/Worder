@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single" >
+        <item
+            android:id="@+id/slider_add_word"
+            android:icon="@drawable/ic_add_word"
+            android:title="@string/add_new_word" />
+        <item
+            android:id="@+id/slider_delete_selected"
+            android:icon="@drawable/ic_delete_selected"
+            android:title="@string/delete_selected" />
+        <item
+            android:id="@+id/slider_select_all"
+            android:icon="@drawable/ic_select_all_"
+            android:title="@string/select_all" />
+        <item
+            android:id="@+id/slider_deselect_all"
+            android:icon="@drawable/ic_unselect_all"
+            android:title="@string/unselect_all" />
+    </group>
+    <item android:title="@string/dictionary">
+        <menu>
+            <item
+                android:id="@+id/slider_import"
+                android:icon="@drawable/ic_import"
+                android:enabled="false"
+                android:title="@string/dict_import" />
+            <item
+                android:id="@+id/slider_export"
+                android:icon="@drawable/ic_export"
+                android:enabled="false"
+                android:title="@string/dict_export" />
+            <item
+                android:id="@+id/slider_create_new"
+                android:icon="@drawable/ic_create_new"
+                android:enabled="false"
+                android:title="@string/dict_create_new" />
+
+            <item
+                android:id="@+id/slider_select"
+                android:icon="@drawable/ic_select"
+                android:enabled="false"
+                android:title="@string/dict_select" />
+
+
+        </menu>
+    </item>
+
+    <item android:title="@string/action_settings">
+        <menu>
+            <item
+                android:id="@+id/slider_setting"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/action_settings" />
+        </menu>
+    </item>
+
+</menu>

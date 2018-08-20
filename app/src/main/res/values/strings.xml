@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Worder</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Auto learn©</string>
+    <string name="nav_header_subtitle">Learning in your car</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="ed_word_hint">Enter the word to study</string>
+    <string name="ed_translate_hint">Enter translation</string>
+    <string name="ed_auto_translate_hint">Auto translation</string>
+    <string name="err_not_entered">Enter the word and translation</string>
+    <string name="notification_text">Press me for return to applicaion</string>
+    <string name="select_all">Select all</string>
+    <string name="unselect_all">Unselect all</string>
+    <string name="delete_selected">Delete selected</string>
+    <string name="add_new_word">Add new word</string>
+    <string name="speak_selected">Speak selected</string>
+    <string name="dictionary">Dictionary</string>
+    <string name="dict_import">Import</string>
+    <string name="dict_export">Export</string>
+    <string name="dict_create_new">Create new...</string>
+    <string name="dict_select">Select...</string>
+    <string name="multiple_input">Multiple input</string>
+    <string name="voice_input">Voice input</string>
+    <string name="auto_translate">Auto translate</string>
+    <string name="text">Text</string>
+    <string name="hello_can_you_i_help">Hello, How can I help you?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_language_for_translate">Default language for translate</string>
+    <string name="speak_speed">Speed speak</string>
+</resources>
