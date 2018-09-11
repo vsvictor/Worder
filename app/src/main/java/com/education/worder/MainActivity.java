@@ -33,6 +33,7 @@ import com.education.worder.data.Words;
 import com.education.worder.fragments.AddWordFragment;
 import com.education.worder.fragments.MainFragment;
 import com.education.worder.fragments.SettingFragment;
+import com.education.worder.fragments.Settings;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else if(addFragment.isAdded()){
             getSupportFragmentManager().beginTransaction().replace(R.id.clMain, mainFragment).commit();
-            binder.getService().loadData();
+            binder.getService().loadData(Settings.load());
         }else{
             super.onBackPressed();
         }
@@ -197,7 +198,7 @@ public class MainActivity extends AppCompatActivity
         public void onServiceConnected(ComponentName name, IBinder service) {
             binder = (AudioService.LocalBinder) service;
             binder.getService().setOnAudioServiceListener(mainFragment);
-            binder.getService().loadData();
+            binder.getService().loadData(Settings.load());
         }
 
         @Override

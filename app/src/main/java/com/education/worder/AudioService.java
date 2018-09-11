@@ -20,6 +20,7 @@ import android.util.Log;
 import com.education.worder.data.Word;
 import com.education.worder.data.Words;
 import com.education.worder.fragments.MainFragment;
+import com.education.worder.fragments.Settings;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -73,7 +74,7 @@ public class AudioService extends Service implements Words.OnWords, TextToSpeech
         try {
             if(intent.getAction().equals(EX_COMMAND_START)){
                 startInForeground();
-                loadData();
+                loadData(Settings.load());
             }
         }catch (NullPointerException ex){
             ex.printStackTrace();
@@ -166,15 +167,15 @@ public class AudioService extends Service implements Words.OnWords, TextToSpeech
         this.onAudioService = listener;
     }
 
-    public void loadData(){
+    public void loadData(Settings settings){
         Handler handler = new Handler(getMainLooper());
         words = new Words(this, handler);
         words.setOnWordsListener(this);
-        words.loadAll();
+        words.loadWors(settings.getDictionaryID());
     }
 
     public void addWord(Word word){
-        words.addWord(word);
+        words.addWord(Settings.load().getDictionaryID(), word);
     }
     public void deleteWord(Word word){
         words.deleteWord(word);
@@ -194,17 +195,17 @@ public class AudioService extends Service implements Words.OnWords, TextToSpeech
 
     @Override
     public void onInserted() {
-        loadData();
+        loadData(Settings.load());
     }
 
     @Override
     public void onDeleted() {
-        loadData();
+        loadData(Settings.load());
     }
 
     @Override
     public void onUpdated() {
-        loadData();
+        loadData(Settings.load());
     }
 
     @Override
@@ -234,6 +235,10 @@ public class AudioService extends Service implements Words.OnWords, TextToSpeech
                 tts.speak(w.getTranslate(), TextToSpeech.QUEUE_ADD, null, w.getTranslate());
             }
         }
+    }
+
+    public Set<Locale> getLanguages(){
+        return tts.getAvailableLanguages();
     }
 
     public class LocalBinder extends Binder{

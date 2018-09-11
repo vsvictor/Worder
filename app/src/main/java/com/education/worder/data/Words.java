@@ -48,32 +48,32 @@ public class Words{
         return selected;
     }
 
-    public void loadAll(){
+    public void loadWors(final long dict){
         handler.post(new Runnable() {
             @Override
             public void run() {
-                Cursor cursor = helper.loaAll();
+                Cursor cursor = helper.loadWordsFromDictionary(dict);
                 boolean notEmpty = cursor.moveToFirst();
                 if(notEmpty) {
-                    while (cursor.moveToNext()) {
+                    do {
                         long id = cursor.getLong(cursor.getColumnIndexOrThrow(DBWords.DBEntry.ID));
                         String word = cursor.getString(cursor.getColumnIndexOrThrow(DBWords.DBEntry.WORD));
                         String translate = cursor.getString(cursor.getColumnIndexOrThrow(DBWords.DBEntry.TRANSLATE));
                         int i = cursor.getInt(cursor.getColumnIndexOrThrow(DBWords.DBEntry.SELECTED));
                         Word w = new Word(id,word,translate, (i==1));
                         data.add(w);
-                    }
+                    }while (cursor.moveToNext());
                     if(onWords != null) onWords.onLoaded(Words.this);
                 }
             }
         });
     }
 
-    public void addWord(final Word word){
+    public void addWord(final long dict, final Word word){
         handler.post(new Runnable() {
             @Override
             public void run() {
-                long id = helper.insert(word.getWord(), word.getTranslate());
+                long id = helper.insert(dict, word.getWord(), word.getTranslate());
                 if(id >= 0){
                     word.setID(id);
                     data.add(word);
