@@ -56,10 +56,10 @@ public class Words{
                 boolean notEmpty = cursor.moveToFirst();
                 if(notEmpty) {
                     do {
-                        long id = cursor.getLong(cursor.getColumnIndexOrThrow(DBWords.DBEntry.ID));
-                        String word = cursor.getString(cursor.getColumnIndexOrThrow(DBWords.DBEntry.WORD));
-                        String translate = cursor.getString(cursor.getColumnIndexOrThrow(DBWords.DBEntry.TRANSLATE));
-                        int i = cursor.getInt(cursor.getColumnIndexOrThrow(DBWords.DBEntry.SELECTED));
+                        long id = cursor.getLong(cursor.getColumnIndexOrThrow(DBWords.DBEntryWord.ID));
+                        String word = cursor.getString(cursor.getColumnIndexOrThrow(DBWords.DBEntryWord.WORD));
+                        String translate = cursor.getString(cursor.getColumnIndexOrThrow(DBWords.DBEntryWord.TRANSLATE));
+                        int i = cursor.getInt(cursor.getColumnIndexOrThrow(DBWords.DBEntryWord.SELECTED));
                         Word w = new Word(id,word,translate, (i==1));
                         data.add(w);
                     }while (cursor.moveToNext());

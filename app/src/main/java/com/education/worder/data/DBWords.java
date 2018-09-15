@@ -43,7 +43,7 @@ public class DBWords extends SQLiteOpenHelper {
 
     public Cursor loadWordsFromDictionary(long dict){
         SQLiteDatabase db = getReadableDatabase();
-        String commad = DBEntry.DICTIONARY + "=?";
+        String commad = DBEntryWord.DICTIONARY + "=?";
         String[] args = {String.valueOf(dict)};
         Cursor cursor = db.query(MAIN_TABLE,null,commad,args,null,null,null);
         return cursor;
@@ -52,15 +52,15 @@ public class DBWords extends SQLiteOpenHelper {
     public long insert(long dict, String word, String translate){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(DBEntry.DICTIONARY, dict);
-        cv.put(DBEntry.WORD, word);
-        cv.put(DBEntry.TRANSLATE, translate);
+        cv.put(DBEntryWord.DICTIONARY, dict);
+        cv.put(DBEntryWord.WORD, word);
+        cv.put(DBEntryWord.TRANSLATE, translate);
         long result = db.insertOrThrow(MAIN_TABLE,null, cv);
         return result;
     }
 
     public int delete(long id){
-        String command = DBEntry.ID + " = ?";
+        String command = DBEntryWord.ID + " = ?";
         String[] args = {String.valueOf(id)};
         SQLiteDatabase db = getWritableDatabase();
         int result = db.delete(MAIN_TABLE,command, args);
@@ -68,13 +68,13 @@ public class DBWords extends SQLiteOpenHelper {
     }
 
     public int update(long id, String word, String translate, boolean selected){
-        String command = DBEntry.ID + " = ?";
+        String command = DBEntryWord.ID + " = ?";
         String[] args = {String.valueOf(id)};
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(DBEntry.WORD,word);
-        cv.put(DBEntry.TRANSLATE, translate);
-        cv.put(DBEntry.SELECTED, selected?1:0);
+        cv.put(DBEntryWord.WORD,word);
+        cv.put(DBEntryWord.TRANSLATE, translate);
+        cv.put(DBEntryWord.SELECTED, selected?1:0);
         int result = db.update(MAIN_TABLE,cv,command, args);
         return result;
     }
@@ -88,11 +88,11 @@ public class DBWords extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE =
             "CREATE TABLE " + MAIN_TABLE + " ("+
-            DBEntry.ID  + " INTEGER PRIMARY KEY, "+
-            DBEntry.DICTIONARY + " INTEGER, "+
-            DBEntry.WORD + " TEXT, "+
-            DBEntry.TRANSLATE + " TEXT, "+
-            DBEntry.SELECTED + " INTEGER"+");";
+            DBEntryWord.ID  + " INTEGER PRIMARY KEY, "+
+            DBEntryWord.DICTIONARY + " INTEGER, "+
+            DBEntryWord.WORD + " TEXT, "+
+            DBEntryWord.TRANSLATE + " TEXT, "+
+            DBEntryWord.SELECTED + " INTEGER"+");";
 
     private static final String SQL_DICT_DELETE =
             "DROP TABLE IF EXISTS " + DICT_TABLE;
@@ -100,7 +100,7 @@ public class DBWords extends SQLiteOpenHelper {
     private static final String SQL_DELETE =
             "DROP TABLE IF EXISTS " + MAIN_TABLE;
 
-    public static class DBEntry{
+    public static class DBEntryWord{
         public static final String ID = "_id";
         public static final String DICTIONARY = "dict";
         public static final String WORD = "word";
