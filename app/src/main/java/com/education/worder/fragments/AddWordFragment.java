@@ -187,7 +187,6 @@ public class AddWordFragment extends Fragment {
             source = strings[0];
             String result;
             try {
-
                 AssetManager assManager = getActivity().getAssets();
                 InputStream stream = assManager.open("Worder.json");
 

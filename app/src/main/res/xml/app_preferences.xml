@@ -1,0 +1,29 @@
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:asp="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.preference.PreferenceCategory
+        android:title="@string/action_settings">
+
+        <android.support.v7.preference.ListPreference
+            android:key="@string/dictionary"
+            android:title="@string/dictionary"
+            android:dialogTitle="@string/select_dictionary"
+            android:summary="@string/select_dictionary"/>
+
+        <android.support.v7.preference.CheckBoxPreference
+            android:key="mixes"
+            android:title="@string/into_the_mix"
+            android:summary="@string/mix_phrases"
+            android:defaultValue="true"/>
+
+        <SeekBarPreference
+            android:key="speed"
+            android:title="@string/speech_speed"
+            android:summary="@string/speech_speed_phrases"
+            android:defaultValue="40"
+            android:max="100"
+            asp:min="1" />
+
+    </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

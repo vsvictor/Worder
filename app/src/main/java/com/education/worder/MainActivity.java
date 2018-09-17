@@ -3,22 +3,10 @@ package com.education.worder;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Parcelable;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -28,17 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.education.worder.data.DBWords;
 import com.education.worder.data.Word;
-import com.education.worder.data.Words;
 import com.education.worder.fragments.AddWordFragment;
 import com.education.worder.fragments.MainFragment;
-import com.education.worder.fragments.SettingFragment;
-import com.education.worder.fragments.Settings;
-import com.google.gson.Gson;
+import com.education.worder.fragments.SettingsFragment;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -48,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = MainActivity.class.getSimpleName();
     private MainFragment mainFragment = MainFragment.newInstance();
     private AddWordFragment addFragment = AddWordFragment.newInstance();
-    private SettingFragment settingFragment = SettingFragment.newInstance();
+    private SettingsFragment settingFragment = SettingsFragment.newInstance();
     private AudioService.LocalBinder binder;
     private boolean isAutoTranslate = false;
     private boolean isMultipleInput = false;
@@ -80,13 +64,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onStart(){
         super.onStart();
-        Intent intent = getIntent();
-        String action  = "Action: undefined";
-        try{
-            action = intent.getAction();
-            Log.i(TAG, "Action: "+action);
-        }catch (NullPointerException ex){
-            Log.i(TAG, action);
+        if(Settings.load().isFirstStart()){
+            DBWords helper = new DBWords(this);
+            helper.insert("default", Locale.US,Locale.getDefault());
+            Settings.load().setFirstStart(false);
         }
     }
 
@@ -171,7 +152,7 @@ public class MainActivity extends AppCompatActivity
                 mainFragment.unselectAll();
                 break;
             }
-            case R.id.action_settings:{
+            case R.id.slider_setting:{
                 viewSettings();
                 break;
             }

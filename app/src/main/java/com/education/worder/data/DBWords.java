@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-;
+;import java.util.Locale;
 
 public class DBWords extends SQLiteOpenHelper {
 
@@ -46,6 +46,22 @@ public class DBWords extends SQLiteOpenHelper {
         String commad = DBEntryWord.DICTIONARY + "=?";
         String[] args = {String.valueOf(dict)};
         Cursor cursor = db.query(MAIN_TABLE,null,commad,args,null,null,null);
+        return cursor;
+    }
+
+    public long insert(String name, Locale langFrom, Locale langTo){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(DBDictEntry.NAME, name);
+        cv.put(DBDictEntry.LANG_FROM, langFrom.toString());
+        cv.put(DBDictEntry.LANG_TO, langTo.toString());
+        long id = db.insertOrThrow(DICT_TABLE,null, cv);
+        return id;
+    }
+
+    public Cursor loadDictionaries(){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(DICT_TABLE,null,null,null,null,null,null);
         return cursor;
     }
 

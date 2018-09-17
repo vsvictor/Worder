@@ -5,13 +5,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.IBinder;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.NotificationCompat;
@@ -19,8 +17,6 @@ import android.util.Log;
 
 import com.education.worder.data.Word;
 import com.education.worder.data.Words;
-import com.education.worder.fragments.MainFragment;
-import com.education.worder.fragments.Settings;
 
 import java.util.ArrayList;
 import java.util.Locale;

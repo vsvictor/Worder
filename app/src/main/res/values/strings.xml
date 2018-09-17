@@ -18,6 +18,12 @@
     <string name="add_new_word">Add new word</string>
     <string name="speak_selected">Speak selected</string>
     <string name="dictionary">Dictionary</string>
+    <string name="select_dictionary">Select dictionary</string>
+    <string name="phrases">Phrases</string>
+    <string name="into_the_mix">Into the mix</string>
+    <string name="mix_phrases">Mix the phrases in the list</string>
+    <string name="speech_speed">Speed speech</string>
+    <string name="speech_speed_phrases">Speed speech phrases</string>
     <string name="dict_import">Import</string>
     <string name="dict_export">Export</string>
     <string name="dict_create_new">Create new...</string>
