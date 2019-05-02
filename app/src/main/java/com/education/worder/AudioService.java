@@ -19,7 +19,9 @@ import com.education.worder.data.Word;
 import com.education.worder.data.Words;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
+import java.util.Random;
 import java.util.Set;
 
 public class AudioService extends Service implements Words.OnWords, TextToSpeech.OnInitListener{
@@ -224,12 +226,16 @@ public class AudioService extends Service implements Words.OnWords, TextToSpeech
         Log.i(TAG, "Start speak, TTS inted:"+ttsInited);
         if(ttsInited) {
             ArrayList<Word> selected = words.getSelected();
+            if(Settings.load().isMuxed()) {
+                Collections.shuffle(selected);
+            }
             for (Word w : selected) {
                 tts.setLanguage(Locale.US);
                 tts.speak(w.getWord(), TextToSpeech.QUEUE_ADD, null, w.getWord());
                 tts.setLanguage(Locale.getDefault());
                 tts.speak(w.getTranslate(), TextToSpeech.QUEUE_ADD, null, w.getTranslate());
             }
+
         }
     }
 
